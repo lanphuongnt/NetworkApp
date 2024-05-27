@@ -18,6 +18,7 @@ namespace Ftp_Client
 {
     public partial class MainForm : Form
     {
+        private TcpClient client = new TcpClient();
         public MainForm()
         {
             InitializeComponent();
@@ -65,8 +66,7 @@ namespace Ftp_Client
             int portServer = Convert.ToInt32(portTextBox.Text);
             string username = usernameTextBox.Text;
             string password = passwdTextBox.Text;
-            using (TcpClient client = new TcpClient())
-            {
+            TcpClient client = this.client;
                 try
                 {
                     await client.ConnectAsync(ftpServer, portServer);
@@ -98,7 +98,42 @@ namespace Ftp_Client
                         response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
 
                         if (response.StartsWith("230"))
+                        {
                             MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Gửi request LIST lấy thông tin folder
+                            data = Encoding.ASCII.GetBytes("LIST");
+                            await stream.WriteAsync(data, 0, data.Length);
+                            bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                            response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            MessageBox.Show(response);
+                            // Cập nhật remoteForm từ response
+                            RemoteSiteForm remoteForm = new RemoteSiteForm();
+                            loadForm(mainsiteContainer.Panel2, remoteForm);
+                            remoteForm.updateContent(response);
+
+
+                            // Check syntax here
+                            /*MessageBox.Show("Start test NLST");
+                            data = Encoding.ASCII.GetBytes("NLST Crypto");
+                            await stream.WriteAsync(data, 0, data.Length);
+                            bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                            response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            MessageBox.Show(response);
+
+                            MessageBox.Show("Start test SIZE");
+                            data = Encoding.ASCII.GetBytes("SIZE Crypto\\Lab1-2 guides.txt");
+                            await stream.WriteAsync(data, 0, data.Length);
+                            bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                            response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            MessageBox.Show(response);
+
+                            MessageBox.Show("Start test DSIZ");
+                            data = Encoding.ASCII.GetBytes("DSIZ Crypto");
+                            await stream.WriteAsync(data, 0, data.Length);
+                            bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                            response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            MessageBox.Show(response);*/
+                        }
                         else
                             MessageBox.Show("Đăng nhập thất bại! Username hoặc password không đúng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -107,7 +142,6 @@ namespace Ftp_Client
                 {
                     MessageBox.Show("Đăng nhập thất bại! Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
 
 
         }

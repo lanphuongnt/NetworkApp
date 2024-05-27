@@ -28,56 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.remotePathTextBox = new System.Windows.Forms.TextBox();
-            this.remoteSiteLabel = new System.Windows.Forms.Label();
-            this.headerPanel = new System.Windows.Forms.Panel();
-            this.headerPanel.SuspendLayout();
-            this.SuspendLayout();
+            remotePathTextBox = new TextBox();
+            remoteSiteLabel = new Label();
+            headerPanel = new Panel();
+            folderTreeRemote = new TreeView();
+            panel2 = new Panel();
+            fileListView = new ListView();
+            panel1 = new Panel();
+            headerPanel.SuspendLayout();
+            panel2.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // remotePathTextBox
             // 
-            this.remotePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.remotePathTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.remotePathTextBox.Location = new System.Drawing.Point(156, 17);
-            this.remotePathTextBox.Name = "remotePathTextBox";
-            this.remotePathTextBox.Size = new System.Drawing.Size(649, 31);
-            this.remotePathTextBox.TabIndex = 5;
+            remotePathTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            remotePathTextBox.BorderStyle = BorderStyle.FixedSingle;
+            remotePathTextBox.Location = new Point(104, 14);
+            remotePathTextBox.Margin = new Padding(2);
+            remotePathTextBox.Name = "remotePathTextBox";
+            remotePathTextBox.Size = new Size(437, 27);
+            remotePathTextBox.TabIndex = 5;
+            remotePathTextBox.PreviewKeyDown += remotePathTextBox_PreviewKeyDown;
             // 
             // remoteSiteLabel
             // 
-            this.remoteSiteLabel.AutoSize = true;
-            this.remoteSiteLabel.Location = new System.Drawing.Point(17, 19);
-            this.remoteSiteLabel.Name = "remoteSiteLabel";
-            this.remoteSiteLabel.Size = new System.Drawing.Size(132, 25);
-            this.remoteSiteLabel.TabIndex = 4;
-            this.remoteSiteLabel.Text = "Remote site:";
+            remoteSiteLabel.AutoSize = true;
+            remoteSiteLabel.Location = new Point(11, 15);
+            remoteSiteLabel.Margin = new Padding(2, 0, 2, 0);
+            remoteSiteLabel.Name = "remoteSiteLabel";
+            remoteSiteLabel.Size = new Size(91, 20);
+            remoteSiteLabel.TabIndex = 4;
+            remoteSiteLabel.Text = "Remote site:";
             // 
             // headerPanel
             // 
-            this.headerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.headerPanel.Controls.Add(this.remotePathTextBox);
-            this.headerPanel.Controls.Add(this.remoteSiteLabel);
-            this.headerPanel.Location = new System.Drawing.Point(-1, 0);
-            this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(828, 65);
-            this.headerPanel.TabIndex = 6;
+            headerPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            headerPanel.Controls.Add(remotePathTextBox);
+            headerPanel.Controls.Add(remoteSiteLabel);
+            headerPanel.Location = new Point(-1, 0);
+            headerPanel.Margin = new Padding(2);
+            headerPanel.Name = "headerPanel";
+            headerPanel.Size = new Size(552, 52);
+            headerPanel.TabIndex = 6;
+            // 
+            // folderTreeRemote
+            // 
+            folderTreeRemote.Dock = DockStyle.Fill;
+            folderTreeRemote.Location = new Point(0, 0);
+            folderTreeRemote.Margin = new Padding(2);
+            folderTreeRemote.Name = "folderTreeRemote";
+            folderTreeRemote.Size = new Size(552, 236);
+            folderTreeRemote.TabIndex = 7;
+            folderTreeRemote.NodeMouseDoubleClick += folderTreeRemote_NodeMouseDoubleClick;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.Controls.Add(fileListView);
+            panel2.Location = new Point(-1, 296);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(552, 297);
+            panel2.TabIndex = 10;
+            // 
+            // fileListView
+            // 
+            fileListView.Dock = DockStyle.Fill;
+            fileListView.Location = new Point(0, 0);
+            fileListView.Name = "fileListView";
+            fileListView.Size = new Size(552, 297);
+            fileListView.TabIndex = 0;
+            fileListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(folderTreeRemote);
+            panel1.Location = new Point(-1, 57);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(552, 236);
+            panel1.TabIndex = 11;
             // 
             // RemoteSiteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(826, 790);
-            this.Controls.Add(this.headerPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "RemoteSiteForm";
-            this.Text = "RemoteSiteForm";
-            this.headerPanel.ResumeLayout(false);
-            this.headerPanel.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(551, 596);
+            Controls.Add(panel1);
+            Controls.Add(panel2);
+            Controls.Add(headerPanel);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2);
+            Name = "RemoteSiteForm";
+            Text = "RemoteSiteForm";
+            Load += RemoteSiteForm_Load;
+            headerPanel.ResumeLayout(false);
+            headerPanel.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -85,5 +135,9 @@
         private System.Windows.Forms.TextBox remotePathTextBox;
         private System.Windows.Forms.Label remoteSiteLabel;
         private System.Windows.Forms.Panel headerPanel;
+        private TreeView folderTreeRemote;
+        private Panel panel2;
+        private Panel panel1;
+        private ListView fileListView;
     }
 }

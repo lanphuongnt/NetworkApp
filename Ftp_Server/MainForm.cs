@@ -14,6 +14,12 @@ using MongoDB.Bson;
 using System.CodeDom;
 using MongoDB.Bson.Serialization.Attributes;
 using BCrypt.Net;
+using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+using SharpCompress.Writers;
+using SharpCompress.Compressors.Xz;
+using SharpCompress.Common;
 
 namespace Ftp_Server
 {
@@ -228,7 +234,7 @@ namespace Ftp_Server
             }
             viewSession.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-        private void handleUser(object obj, object obj_stream, string cmd)
+        private string handleUser(object obj, object obj_stream, string cmd)
         {
             TcpClient client = (TcpClient)obj;
             NetworkStream stream = (NetworkStream)obj_stream;
@@ -286,16 +292,270 @@ namespace Ftp_Server
                 addLog(tmp_res);
 
             }
-
+            return username; // Trả về username
         }
+        private static readonly Dictionary<string, string> MimeTypes = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase)
+        {
+            { ".txt", "Text File" },
+            { ".pdf", "PDF Document" },
+            { ".doc", "Microsoft Word Document" },
+            { ".docx", "Microsoft Word Document" },
+            { ".xls", "Microsoft Excel Document" },
+            { ".xlsx", "Microsoft Excel Document" },
+            { ".jpg", "JPEG Image" },
+            { ".jpeg", "JPEG Image" },
+            { ".png", "PNG Image" },
+            { ".gif", "GIF Image" },
+            { ".html", "HTML Document" },
+            { ".htm", "HTML Document" },
+            { ".zip", "ZIP Archive" },
+            { ".rar", "RAR Archive" },
+            { ".ppt", "Microsoft PowerPoint Presentation" },
+            // Thêm các phần mở rộng khác và loại tệp tương ứng nếu cần
+        };
+        private string GetFileType(string filePath)
+        { // Lấy File Type dựa trên đường dẫn
+            string extension = Path.GetExtension(filePath);
+            if (MimeTypes.ContainsKey(extension))
+            {
+                return MimeTypes[extension];
+            }
+            return "File";
+        }
+        private void getFolderData (string directory, StringBuilder sb, int lenSuf)
+        { // Lấy tất cả thư mục và tệp từ directory ghi vào sb, bỏ phần suffix với độ dài lenSuf
+            // Thêm đường dẫn của thư mục hiện tại vào chuỗi
+            if (directory.Length > lenSuf)
+            {
+                string dirWithoutSuf = directory.Substring(lenSuf);
+                // Lấy thông tin directory
+                DirectoryInfo dirInfo = new DirectoryInfo(directory);
+                string lastModified = dirInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
+                sb.AppendLine($"DIR:{dirWithoutSuf}\t-\tFile folder\t{lastModified}");
+            }
+            
+            // Thêm tất cả các tệp trong thư mục hiện tại vào chuỗi
+            foreach (string file in Directory.GetFiles(directory))
+            {
+                string fileWithoutSuf = file.Substring(lenSuf);
+                FileInfo fileInfo = new FileInfo(file);
+                string fileSize = fileInfo.Length.ToString();
+                string lastModified = fileInfo.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
+                string fileType = GetFileType(file);
+                sb.AppendLine($"{fileWithoutSuf}\t{fileSize}\t{fileType}\t{lastModified}");
+            }
+            // Đệ quy để thêm tất cả các thư mục con vào chuỗi
+            foreach (string subDirectory in Directory.GetDirectories(directory))
+            {
+                getFolderData(subDirectory, sb, lenSuf);
+            }
+        }
+        private string getLocationDB(string username)
+        { // Lấy location của user từ DB
+            var client = new MyMongoDBConnect().connection;
+            var database = client.GetDatabase("users");
+            var collection = database.GetCollection<BsonDocument>("account");
+            // Xây dựng truy vấn
+            var filter = Builders<BsonDocument>.Filter.Eq("username", username);
+            // Thực hiện truy vấn
+            var result = collection.Find(filter).FirstOrDefault();
 
+            if (result != null)
+            {
+                return result["location"].AsString;
+            }
+            return null;
+        }
+        private void handleList(object obj, object obj_stream, string cmd, string username)
+        { // Xử lý req LIST
+            TcpClient client = (TcpClient)obj;
+            NetworkStream stream = (NetworkStream)obj_stream;
+            byte[] buffer = new byte[1024];
+            // addLog req
+            time = getTime();
+            string[] row = { time, this.type1, cmd };
+            addLog(row);
+            // Lấy location root của user
+            string curLocate = getLocationDB(username);
+            int lenSuf = curLocate.Length + 1;
+            if (cmd.Length > 5)
+            { // Nếu cmd LIST có tham số path
+                string remotePath = cmd.Substring(5);
+                curLocate += "\\" + remotePath;
+            }
+            Console.WriteLine("curLocate: {0}", curLocate);
+            // Nối các đường dẫn tệp và thư muc vào sb
+            StringBuilder sb = new StringBuilder();
+            getFolderData(curLocate, sb, lenSuf);
+            // Gửi res
+            string responseStr = sb.ToString();
+            Console.WriteLine("response: {0}", responseStr);
+            byte[] response = Encoding.ASCII.GetBytes(responseStr);
+            stream.Write(response, 0, response.Length);
+            // addLog res
+            time = getTime();
+            string[] res_log = { time, this.type2, responseStr };
+            addLog(res_log);
+        }
+        private void handleNLST(object obj, object obj_stream, string cmd, string username)
+        { // Xử lý req NLST
+            TcpClient client = (TcpClient)obj;
+            NetworkStream stream = (NetworkStream)obj_stream;
+            byte[] buffer = new byte[1024];
+            // addLog req
+            time = getTime();
+            string[] row = { time, this.type1, cmd };
+            addLog(row);
+            // Lấy location root của user
+            string curLocate = getLocationDB(username);
+            if (cmd.Length > 5)
+            { // Nếu cmd LIST có tham số path
+                string remotePath = cmd.Substring(5);
+                curLocate += "\\" + remotePath;
+            }
+            Console.WriteLine("curLocate: {0}", curLocate);
+            StringBuilder sb = new StringBuilder();
+            string[] files = Directory.GetFiles(curLocate);
+            foreach (string file in files)
+            {
+                string fileName = Path.GetFileName(file);
+                sb.Append(fileName);
+            }
+            // Lấy danh sách các thư mục con trong thư mục
+            string[] subDirectories = Directory.GetDirectories(curLocate);
+            foreach (string subDirectory in subDirectories)
+            {
+                string directoryName = $"DIR:{Path.GetFileName(subDirectory)}";
+                sb.Append(directoryName);
+            }
+            // Gửi res
+            string responseStr = sb.ToString();
+            Console.WriteLine("response: {0}", responseStr);
+            byte[] response = Encoding.ASCII.GetBytes(responseStr);
+            stream.Write(response, 0, response.Length);
+            // addLog res
+            time = getTime();
+            string[] res_log = { time, this.type2, responseStr };
+            addLog(res_log);
+        }
+        private long getFileSize(string path)
+        { // Lấy kích thước file theo đường dẫn
+            try
+            {
+                FileInfo file = new FileInfo(path);
+                long fileSize = file.Length;
+                return fileSize;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error getting file size for {path}: {e.Message}");
+                return 0;
+            }
+        }
+        private void handleSize(object obj, object obj_stream, string cmd, string username)
+        {
+            // Xử lý req SIZE
+            TcpClient client = (TcpClient)obj;
+            NetworkStream stream = (NetworkStream)obj_stream;
+            byte[] buffer = new byte[1024];
+            // addLog req
+            time = getTime();
+            string[] row = { time, this.type1, cmd };
+            addLog(row);
+            // Lấy location root của user
+            string responseStr = "";
+            string curLocate = getLocationDB(username);
+            // Lấy filePath
+            if (cmd.Length < 5)
+            {
+                responseStr = "501 Syntax error in parameters or arguments";
+            }
+            string filePath = curLocate + "\\" + cmd.Substring(5);
+            if (File.Exists(filePath))
+            {
+                long fileSize = getFileSize(filePath);
+                responseStr = $"213 {fileSize}";
+            }
+            else
+            {
+                responseStr = $"550 File {filePath} not found";
+            }
+            // Gửi res
+            Console.WriteLine("response: {0}", responseStr);
+            byte[] response = Encoding.ASCII.GetBytes(responseStr);
+            stream.Write(response, 0, response.Length);
+            // addLog res
+            time = getTime();
+            string[] res_log = { time, this.type2, responseStr };
+            addLog(res_log);
+        }
+        private long getDirSize(string path)
+        { // Lấy kích thước file theo đường dẫn
+            try
+            {
+                long totalSize = 0;
+                DirectoryInfo dirInfo = new DirectoryInfo(path);
+                foreach (FileInfo file in dirInfo.GetFiles())
+                { // Lấy tất cả kích thước các tệp
+                    totalSize += file.Length;
+                }
+                foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
+                {
+                    totalSize += getDirSize(subDir.FullName);
+                }
+
+                return totalSize;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error getting directory size for {path}: {e.Message}");
+                return 0;
+            }
+        }
+        private void handleDsiz(object obj, object obj_stream, string cmd, string username)
+        {
+            // Xử lý req DSIZ
+            TcpClient client = (TcpClient)obj;
+            NetworkStream stream = (NetworkStream)obj_stream;
+            byte[] buffer = new byte[1024];
+            // addLog req
+            time = getTime();
+            string[] row = { time, this.type1, cmd };
+            addLog(row);
+            // Lấy location root của user
+            string responseStr = "";
+            string curLocate = getLocationDB(username);
+            // Lấy dirPath
+            if (cmd.Length < 5)
+            {
+                responseStr = "501 Syntax error in parameters or arguments";
+            }
+            string dirPath = curLocate + "\\" + cmd.Substring(5);
+            if (Directory.Exists(dirPath))
+            {
+                long dirSize = getDirSize(dirPath);
+                responseStr = $"213 {dirSize}";
+            }
+            else
+            {
+                responseStr = $"550 Directory {dirPath} not found";
+            }
+            // Gửi res
+            Console.WriteLine("response: {0}", responseStr);
+            byte[] response = Encoding.ASCII.GetBytes(responseStr);
+            stream.Write(response, 0, response.Length);
+            // addLog res
+            time = getTime();
+            string[] res_log = { time, this.type2, responseStr };
+            addLog(res_log);
+        }
         private void HandleConnection(object obj)
         {
             
             TcpClient client = (TcpClient)obj;
             try
             {
-                string username_client, password_client; 
+                string username_client = "", password_client; 
                 // Lấy dữ liệu luồng mạng của client
                 NetworkStream stream = client.GetStream();
                 host = Dns.GetHostName();
@@ -322,11 +582,23 @@ namespace Ftp_Server
                     }
                     else if (receivedData.StartsWith("USER"))
                     {
-                        handleUser(client, stream, receivedData);
+                        username_client = handleUser(client, stream, receivedData);
                     }
                     else if (receivedData.StartsWith("LIST"))
                     {
-
+                        handleList(client, stream, receivedData, username_client);
+                    }
+                    else if (receivedData.StartsWith("NLST"))
+                    {
+                        handleNLST(client, stream, receivedData, username_client);
+                    }
+                    else if (receivedData.StartsWith("SIZE"))
+                    {
+                        handleSize(client, stream, receivedData, username_client);
+                    }
+                    else if (receivedData.StartsWith("DSIZ"))
+                    {
+                        handleDsiz(client, stream, receivedData, username_client);
                     }
                     else if (receivedData.StartsWith("QUIT"))
                     {
