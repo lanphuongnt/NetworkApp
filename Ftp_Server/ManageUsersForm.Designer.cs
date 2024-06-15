@@ -28,272 +28,273 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainContainer = new System.Windows.Forms.SplitContainer();
-            this.removeUserTextBox = new System.Windows.Forms.TextBox();
-            this.addUserTextBox = new System.Windows.Forms.TextBox();
-            this.removeUserButton = new System.Windows.Forms.Button();
-            this.addNewUserButton = new System.Windows.Forms.Button();
-            this.userListLabel = new System.Windows.Forms.Label();
-            this.userListBox = new System.Windows.Forms.ListBox();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.passwordLabel = new System.Windows.Forms.Label();
-            this.locationTextBox = new System.Windows.Forms.TextBox();
-            this.virtualPathTextBox = new System.Windows.Forms.TextBox();
-            this.locationLabel = new System.Windows.Forms.Label();
-            this.virtualPathLabel = new System.Windows.Forms.Label();
-            this.applyButton = new System.Windows.Forms.Button();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.usernameLabel = new System.Windows.Forms.Label();
-            this.roleComboBox = new System.Windows.Forms.ComboBox();
-            this.roleLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
-            this.mainContainer.Panel1.SuspendLayout();
-            this.mainContainer.Panel2.SuspendLayout();
-            this.mainContainer.SuspendLayout();
-            this.SuspendLayout();
+            mainContainer = new SplitContainer();
+            removeUserTextBox = new TextBox();
+            addUserTextBox = new TextBox();
+            removeUserButton = new Button();
+            addNewUserButton = new Button();
+            userListLabel = new Label();
+            userListBox = new ListBox();
+            cancelButton = new Button();
+            passwordTextBox = new TextBox();
+            passwordLabel = new Label();
+            locationTextBox = new TextBox();
+            virtualPathTextBox = new TextBox();
+            locationLabel = new Label();
+            virtualPathLabel = new Label();
+            applyButton = new Button();
+            usernameTextBox = new TextBox();
+            usernameLabel = new Label();
+            roleComboBox = new ComboBox();
+            roleLabel = new Label();
+            ((System.ComponentModel.ISupportInitialize)mainContainer).BeginInit();
+            mainContainer.Panel1.SuspendLayout();
+            mainContainer.Panel2.SuspendLayout();
+            mainContainer.SuspendLayout();
+            SuspendLayout();
             // 
             // mainContainer
             // 
-            this.mainContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainContainer.Location = new System.Drawing.Point(0, 0);
-            this.mainContainer.Name = "mainContainer";
+            mainContainer.BorderStyle = BorderStyle.Fixed3D;
+            mainContainer.Dock = DockStyle.Fill;
+            mainContainer.Location = new Point(0, 0);
+            mainContainer.Margin = new Padding(3, 4, 3, 4);
+            mainContainer.Name = "mainContainer";
             // 
             // mainContainer.Panel1
             // 
-            this.mainContainer.Panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.mainContainer.Panel1.Controls.Add(this.removeUserTextBox);
-            this.mainContainer.Panel1.Controls.Add(this.addUserTextBox);
-            this.mainContainer.Panel1.Controls.Add(this.removeUserButton);
-            this.mainContainer.Panel1.Controls.Add(this.addNewUserButton);
-            this.mainContainer.Panel1.Controls.Add(this.userListLabel);
-            this.mainContainer.Panel1.Controls.Add(this.userListBox);
+            mainContainer.Panel1.BackColor = SystemColors.ButtonHighlight;
+            mainContainer.Panel1.Controls.Add(removeUserTextBox);
+            mainContainer.Panel1.Controls.Add(addUserTextBox);
+            mainContainer.Panel1.Controls.Add(removeUserButton);
+            mainContainer.Panel1.Controls.Add(addNewUserButton);
+            mainContainer.Panel1.Controls.Add(userListLabel);
+            mainContainer.Panel1.Controls.Add(userListBox);
             // 
             // mainContainer.Panel2
             // 
-            this.mainContainer.Panel2.Controls.Add(this.cancelButton);
-            this.mainContainer.Panel2.Controls.Add(this.passwordTextBox);
-            this.mainContainer.Panel2.Controls.Add(this.passwordLabel);
-            this.mainContainer.Panel2.Controls.Add(this.locationTextBox);
-            this.mainContainer.Panel2.Controls.Add(this.virtualPathTextBox);
-            this.mainContainer.Panel2.Controls.Add(this.locationLabel);
-            this.mainContainer.Panel2.Controls.Add(this.virtualPathLabel);
-            this.mainContainer.Panel2.Controls.Add(this.applyButton);
-            this.mainContainer.Panel2.Controls.Add(this.usernameTextBox);
-            this.mainContainer.Panel2.Controls.Add(this.usernameLabel);
-            this.mainContainer.Panel2.Controls.Add(this.roleComboBox);
-            this.mainContainer.Panel2.Controls.Add(this.roleLabel);
-            this.mainContainer.Size = new System.Drawing.Size(1173, 557);
-            this.mainContainer.SplitterDistance = 389;
-            this.mainContainer.TabIndex = 0;
+            mainContainer.Panel2.Controls.Add(cancelButton);
+            mainContainer.Panel2.Controls.Add(passwordTextBox);
+            mainContainer.Panel2.Controls.Add(passwordLabel);
+            mainContainer.Panel2.Controls.Add(locationTextBox);
+            mainContainer.Panel2.Controls.Add(virtualPathTextBox);
+            mainContainer.Panel2.Controls.Add(locationLabel);
+            mainContainer.Panel2.Controls.Add(virtualPathLabel);
+            mainContainer.Panel2.Controls.Add(applyButton);
+            mainContainer.Panel2.Controls.Add(usernameTextBox);
+            mainContainer.Panel2.Controls.Add(usernameLabel);
+            mainContainer.Panel2.Controls.Add(roleComboBox);
+            mainContainer.Panel2.Controls.Add(roleLabel);
+            mainContainer.Size = new Size(1271, 713);
+            mainContainer.SplitterDistance = 421;
+            mainContainer.TabIndex = 0;
             // 
             // removeUserTextBox
             // 
-            this.removeUserTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeUserTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.removeUserTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.removeUserTextBox.Location = new System.Drawing.Point(21, 498);
-            this.removeUserTextBox.Name = "removeUserTextBox";
-            this.removeUserTextBox.Size = new System.Drawing.Size(194, 31);
-            this.removeUserTextBox.TabIndex = 14;
+            removeUserTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            removeUserTextBox.BackColor = SystemColors.ButtonFace;
+            removeUserTextBox.BorderStyle = BorderStyle.FixedSingle;
+            removeUserTextBox.Location = new Point(23, 638);
+            removeUserTextBox.Margin = new Padding(3, 4, 3, 4);
+            removeUserTextBox.Name = "removeUserTextBox";
+            removeUserTextBox.Size = new Size(210, 39);
+            removeUserTextBox.TabIndex = 14;
             // 
             // addUserTextBox
             // 
-            this.addUserTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addUserTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.addUserTextBox.Location = new System.Drawing.Point(21, 435);
-            this.addUserTextBox.Name = "addUserTextBox";
-            this.addUserTextBox.Size = new System.Drawing.Size(194, 31);
-            this.addUserTextBox.TabIndex = 13;
+            addUserTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            addUserTextBox.BorderStyle = BorderStyle.FixedSingle;
+            addUserTextBox.Location = new Point(23, 558);
+            addUserTextBox.Margin = new Padding(3, 4, 3, 4);
+            addUserTextBox.Name = "addUserTextBox";
+            addUserTextBox.Size = new Size(210, 39);
+            addUserTextBox.TabIndex = 13;
             // 
             // removeUserButton
             // 
-            this.removeUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeUserButton.Location = new System.Drawing.Point(235, 487);
-            this.removeUserButton.Name = "removeUserButton";
-            this.removeUserButton.Size = new System.Drawing.Size(134, 53);
-            this.removeUserButton.TabIndex = 13;
-            this.removeUserButton.Text = "Remove";
-            this.removeUserButton.UseVisualStyleBackColor = true;
-            this.removeUserButton.Click += new System.EventHandler(this.removeUserButton_Click);
+            removeUserButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            removeUserButton.Location = new Point(255, 624);
+            removeUserButton.Margin = new Padding(3, 4, 3, 4);
+            removeUserButton.Name = "removeUserButton";
+            removeUserButton.Size = new Size(145, 68);
+            removeUserButton.TabIndex = 13;
+            removeUserButton.Text = "Remove";
+            removeUserButton.UseVisualStyleBackColor = true;
+            removeUserButton.Click += removeUserButton_Click;
             // 
             // addNewUserButton
             // 
-            this.addNewUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addNewUserButton.Location = new System.Drawing.Point(235, 424);
-            this.addNewUserButton.Name = "addNewUserButton";
-            this.addNewUserButton.Size = new System.Drawing.Size(134, 53);
-            this.addNewUserButton.TabIndex = 14;
-            this.addNewUserButton.Text = "Add";
-            this.addNewUserButton.UseVisualStyleBackColor = true;
-            this.addNewUserButton.Click += new System.EventHandler(this.addNewUserButton_Click);
+            addNewUserButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            addNewUserButton.Location = new Point(255, 544);
+            addNewUserButton.Margin = new Padding(3, 4, 3, 4);
+            addNewUserButton.Name = "addNewUserButton";
+            addNewUserButton.Size = new Size(145, 68);
+            addNewUserButton.TabIndex = 14;
+            addNewUserButton.Text = "Add";
+            addNewUserButton.UseVisualStyleBackColor = true;
+            addNewUserButton.Click += addNewUserButton_Click;
             // 
             // userListLabel
             // 
-            this.userListLabel.AutoSize = true;
-            this.userListLabel.Location = new System.Drawing.Point(3, 10);
-            this.userListLabel.Name = "userListLabel";
-            this.userListLabel.Size = new System.Drawing.Size(144, 25);
-            this.userListLabel.TabIndex = 1;
-            this.userListLabel.Text = "Already users";
+            userListLabel.AutoSize = true;
+            userListLabel.Location = new Point(3, 13);
+            userListLabel.Name = "userListLabel";
+            userListLabel.Size = new Size(156, 32);
+            userListLabel.TabIndex = 1;
+            userListLabel.Text = "Already users";
             // 
             // userListBox
             // 
-            this.userListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userListBox.FormattingEnabled = true;
-            this.userListBox.ItemHeight = 25;
-            this.userListBox.Location = new System.Drawing.Point(2, 46);
-            this.userListBox.Name = "userListBox";
-            this.userListBox.ScrollAlwaysVisible = true;
-            this.userListBox.Size = new System.Drawing.Size(382, 354);
-            this.userListBox.TabIndex = 0;
-            this.userListBox.SelectedIndexChanged += new System.EventHandler(this.userListBox_SelectedIndexChanged);
+            userListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            userListBox.FormattingEnabled = true;
+            userListBox.Location = new Point(2, 59);
+            userListBox.Margin = new Padding(3, 4, 3, 4);
+            userListBox.Name = "userListBox";
+            userListBox.ScrollAlwaysVisible = true;
+            userListBox.Size = new Size(414, 452);
+            userListBox.TabIndex = 0;
+            userListBox.SelectedIndexChanged += userListBox_SelectedIndexChanged;
             // 
             // cancelButton
             // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(628, 487);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(138, 53);
-            this.cancelButton.TabIndex = 12;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            cancelButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            cancelButton.Location = new Point(681, 624);
+            cancelButton.Margin = new Padding(3, 4, 3, 4);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(150, 68);
+            cancelButton.TabIndex = 12;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.passwordTextBox.Location = new System.Drawing.Point(182, 137);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(526, 31);
-            this.passwordTextBox.TabIndex = 11;
-            this.passwordTextBox.UseSystemPasswordChar = true;
-            this.passwordTextBox.Enter += new System.EventHandler(this.passwordTextBox_Enter);
-            this.passwordTextBox.Leave += new System.EventHandler(this.passwordTextBox_Leave);
+            passwordTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            passwordTextBox.Location = new Point(197, 175);
+            passwordTextBox.Margin = new Padding(3, 4, 3, 4);
+            passwordTextBox.Name = "passwordTextBox";
+            passwordTextBox.Size = new Size(571, 39);
+            passwordTextBox.TabIndex = 11;
+            passwordTextBox.UseSystemPasswordChar = true;
+            passwordTextBox.Enter += passwordTextBox_Enter;
+            passwordTextBox.Leave += passwordTextBox_Leave;
             // 
             // passwordLabel
             // 
-            this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(39, 143);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(112, 25);
-            this.passwordLabel.TabIndex = 10;
-            this.passwordLabel.Text = "Password:";
+            passwordLabel.AutoSize = true;
+            passwordLabel.Location = new Point(42, 183);
+            passwordLabel.Name = "passwordLabel";
+            passwordLabel.Size = new Size(116, 32);
+            passwordLabel.TabIndex = 10;
+            passwordLabel.Text = "Password:";
             // 
             // locationTextBox
             // 
-            this.locationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.locationTextBox.Location = new System.Drawing.Point(182, 325);
-            this.locationTextBox.Name = "locationTextBox";
-            this.locationTextBox.Size = new System.Drawing.Size(526, 31);
-            this.locationTextBox.TabIndex = 9;
-            this.locationTextBox.Enter += new System.EventHandler(this.locationTextBox_Enter);
+            locationTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            locationTextBox.Location = new Point(197, 416);
+            locationTextBox.Margin = new Padding(3, 4, 3, 4);
+            locationTextBox.Name = "locationTextBox";
+            locationTextBox.Size = new Size(571, 39);
+            locationTextBox.TabIndex = 9;
+            locationTextBox.Enter += locationTextBox_Enter;
             // 
             // virtualPathTextBox
             // 
-            this.virtualPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.virtualPathTextBox.Location = new System.Drawing.Point(182, 262);
-            this.virtualPathTextBox.Name = "virtualPathTextBox";
-            this.virtualPathTextBox.Size = new System.Drawing.Size(526, 31);
-            this.virtualPathTextBox.TabIndex = 8;
+            virtualPathTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            virtualPathTextBox.Location = new Point(197, 335);
+            virtualPathTextBox.Margin = new Padding(3, 4, 3, 4);
+            virtualPathTextBox.Name = "virtualPathTextBox";
+            virtualPathTextBox.Size = new Size(571, 39);
+            virtualPathTextBox.TabIndex = 8;
             // 
             // locationLabel
             // 
-            this.locationLabel.AutoSize = true;
-            this.locationLabel.Location = new System.Drawing.Point(39, 328);
-            this.locationLabel.Name = "locationLabel";
-            this.locationLabel.Size = new System.Drawing.Size(100, 25);
-            this.locationLabel.TabIndex = 7;
-            this.locationLabel.Text = "Location:";
+            locationLabel.AutoSize = true;
+            locationLabel.Location = new Point(42, 420);
+            locationLabel.Name = "locationLabel";
+            locationLabel.Size = new Size(109, 32);
+            locationLabel.TabIndex = 7;
+            locationLabel.Text = "Location:";
             // 
             // virtualPathLabel
             // 
-            this.virtualPathLabel.AutoSize = true;
-            this.virtualPathLabel.Location = new System.Drawing.Point(39, 265);
-            this.virtualPathLabel.Name = "virtualPathLabel";
-            this.virtualPathLabel.Size = new System.Drawing.Size(129, 25);
-            this.virtualPathLabel.TabIndex = 6;
-            this.virtualPathLabel.Text = "Virtual Path:";
+            virtualPathLabel.AutoSize = true;
+            virtualPathLabel.Location = new Point(42, 339);
+            virtualPathLabel.Name = "virtualPathLabel";
+            virtualPathLabel.Size = new Size(141, 32);
+            virtualPathLabel.TabIndex = 6;
+            virtualPathLabel.Text = "Virtual Path:";
             // 
             // applyButton
             // 
-            this.applyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.applyButton.Location = new System.Drawing.Point(484, 487);
-            this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(138, 53);
-            this.applyButton.TabIndex = 5;
-            this.applyButton.Text = "Apply";
-            this.applyButton.UseVisualStyleBackColor = true;
-            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            applyButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            applyButton.Location = new Point(525, 624);
+            applyButton.Margin = new Padding(3, 4, 3, 4);
+            applyButton.Name = "applyButton";
+            applyButton.Size = new Size(150, 68);
+            applyButton.TabIndex = 5;
+            applyButton.Text = "Apply";
+            applyButton.UseVisualStyleBackColor = true;
+            applyButton.Click += applyButton_Click;
             // 
             // usernameTextBox
             // 
-            this.usernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.usernameTextBox.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.usernameTextBox.Location = new System.Drawing.Point(182, 79);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.ReadOnly = true;
-            this.usernameTextBox.Size = new System.Drawing.Size(526, 31);
-            this.usernameTextBox.TabIndex = 4;
+            usernameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            usernameTextBox.BackColor = SystemColors.ControlDark;
+            usernameTextBox.Location = new Point(197, 101);
+            usernameTextBox.Margin = new Padding(3, 4, 3, 4);
+            usernameTextBox.Name = "usernameTextBox";
+            usernameTextBox.ReadOnly = true;
+            usernameTextBox.Size = new Size(571, 39);
+            usernameTextBox.TabIndex = 4;
             // 
             // usernameLabel
             // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(39, 85);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(116, 25);
-            this.usernameLabel.TabIndex = 2;
-            this.usernameLabel.Text = "Username:";
+            usernameLabel.AutoSize = true;
+            usernameLabel.Location = new Point(42, 109);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(126, 32);
+            usernameLabel.TabIndex = 2;
+            usernameLabel.Text = "Username:";
             // 
             // roleComboBox
             // 
-            this.roleComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.roleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.roleComboBox.FormattingEnabled = true;
-            this.roleComboBox.Items.AddRange(new object[] {
-            "Read Only",
-            "Read and Write"});
-            this.roleComboBox.Location = new System.Drawing.Point(182, 197);
-            this.roleComboBox.Name = "roleComboBox";
-            this.roleComboBox.Size = new System.Drawing.Size(526, 33);
-            this.roleComboBox.TabIndex = 1;
+            roleComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            roleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            roleComboBox.FormattingEnabled = true;
+            roleComboBox.Items.AddRange(new object[] { "Read Only", "Read and Write" });
+            roleComboBox.Location = new Point(197, 252);
+            roleComboBox.Margin = new Padding(3, 4, 3, 4);
+            roleComboBox.Name = "roleComboBox";
+            roleComboBox.Size = new Size(571, 40);
+            roleComboBox.TabIndex = 1;
             // 
             // roleLabel
             // 
-            this.roleLabel.AutoSize = true;
-            this.roleLabel.Location = new System.Drawing.Point(39, 200);
-            this.roleLabel.Name = "roleLabel";
-            this.roleLabel.Size = new System.Drawing.Size(137, 25);
-            this.roleLabel.TabIndex = 0;
-            this.roleLabel.Text = "User access:";
+            roleLabel.AutoSize = true;
+            roleLabel.Location = new Point(42, 256);
+            roleLabel.Name = "roleLabel";
+            roleLabel.Size = new Size(140, 32);
+            roleLabel.TabIndex = 0;
+            roleLabel.Text = "User access:";
             // 
             // ManageUsersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 557);
-            this.Controls.Add(this.mainContainer);
-            this.Name = "ManageUsersForm";
-            this.Text = "Manage Users Form";
-            this.Load += new System.EventHandler(this.ManageUsersForm_Load);
-            this.mainContainer.Panel1.ResumeLayout(false);
-            this.mainContainer.Panel1.PerformLayout();
-            this.mainContainer.Panel2.ResumeLayout(false);
-            this.mainContainer.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
-            this.mainContainer.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1271, 713);
+            Controls.Add(mainContainer);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "ManageUsersForm";
+            Text = "Manage Users Form";
+            Load += ManageUsersForm_Load;
+            mainContainer.Panel1.ResumeLayout(false);
+            mainContainer.Panel1.PerformLayout();
+            mainContainer.Panel2.ResumeLayout(false);
+            mainContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)mainContainer).EndInit();
+            mainContainer.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion

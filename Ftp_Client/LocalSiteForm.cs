@@ -14,19 +14,24 @@ namespace Ftp_Client
 {
     public partial class LocalSiteForm : Form
     {
+        public event Func<object, string, Task> FileUploadRequested;
+
         public LocalSiteForm()
         {
             InitializeComponent();
+            folderTreeView.MouseUp += FolderTreeView_MouseUp;
+            folderTreeView.AfterCheck += FolderTreeView_AfterCheck;
+            folderTreeView.CheckBoxes = true;
         }
 
         private void localPathTextBox_Leave(object sender, EventArgs e)
         {
-         /*   folderDialog.Url = new Uri(localPathTextBox.Text);*/
+            /*   folderDialog.Url = new Uri(localPathTextBox.Text);*/
         }
 
         private void localPathTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) 
+            if (e.KeyCode == Keys.Enter)
             {
                 if (!string.IsNullOrEmpty(localPathTextBox.Text))
                 {
@@ -37,11 +42,11 @@ namespace Ftp_Client
                 {
                     fileBrowser.Url = null;
                 }
-             //   else
-               // {
-                    //localPathTextBox.Text = fileBrowser.Url.ToString().Substring(8);
+                //   else
+                // {
+                //localPathTextBox.Text = fileBrowser.Url.ToString().Substring(8);
                 //}
-      
+
                 /*folderDialog.Url = new Uri(localPathTextBox.Text);*/
             }
         }
@@ -78,20 +83,14 @@ namespace Ftp_Client
             }
 
         }
-        public void PopulateTreeView(TreeView treeView, string folderPath)
+
+        private void localPathTextBox_TextChanged(object sender, EventArgs e)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
-
-            if (!directoryInfo.Exists)
+            if (Directory.Exists(localPathTextBox.Text))
             {
-                throw new DirectoryNotFoundException("Folder does not exist: " + folderPath);
+                // update file browser
+                fileBrowser.Url = new Uri(localPathTextBox.Text);
             }
-
-            TreeNode rootNode = new TreeNode(directoryInfo.Name);
-            rootNode.Tag = directoryInfo.FullName;
-            treeView.Nodes.Add(rootNode);
-
-            //PopulateTreeView(directoryInfo, rootNode);
         }
 
         static void PopulateTreeView(DirectoryInfo directoryInfo, TreeNode parentNode)
@@ -102,6 +101,7 @@ namespace Ftp_Client
                 {
                     TreeNode directoryNode = new TreeNode(directory.Name);
                     directoryNode.Tag = directory.FullName;
+                    directoryNode.Checked = false; // Thêm checkbox
                     parentNode.Nodes.Add(directoryNode);
 
                     //PopulateTreeView(directory, directoryNode);
@@ -111,6 +111,7 @@ namespace Ftp_Client
                 {
                     TreeNode fileNode = new TreeNode(file.Name);
                     fileNode.Tag = file.FullName;
+                    fileNode.Checked = false; // Thêm checkbox
                     parentNode.Nodes.Add(fileNode);
                 }
             }
@@ -136,22 +137,102 @@ namespace Ftp_Client
             {
                 // CD to this path
                 localPathTextBox.Text = folderPath;
-                
+
+                // Clear selection before populating tree view
+                ClearSelection();
+
                 // Expand child
                 DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
                 PopulateTreeView(directoryInfo, clickedNode);
                 clickedNode.Expand();
             }
         }
+        private List<TreeNode> selectedNodes = new List<TreeNode>();
 
-        private void localPathTextBox_TextChanged(object sender, EventArgs e)
+        private async void UploadMenuItem_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(localPathTextBox.Text))
+            List<string> selectedFiles = new List<string>();
+
+            foreach (TreeNode node in folderTreeView.Nodes)
             {
-                // update file browser
-                fileBrowser.Url = new Uri(localPathTextBox.Text);
+                selectedFiles.AddRange(GetCheckedFiles(node));
+            }
+
+            foreach (string filePath in selectedFiles)
+            {
+                await FileUploadRequested?.Invoke(this, filePath);
             }
         }
-    }
 
+        private List<string> GetCheckedFiles(TreeNode parentNode)
+        {
+            List<string> selectedFiles = new List<string>();
+
+            if (parentNode.Checked && parentNode.Tag is string filePath && File.Exists(filePath))
+            {
+                selectedFiles.Add(filePath);
+            }
+
+            foreach (TreeNode node in parentNode.Nodes)
+            {
+                selectedFiles.AddRange(GetCheckedFiles(node));
+            }
+
+            return selectedFiles;
+        }
+
+        private void ClearSelection()
+        {
+            foreach (TreeNode node in folderTreeView.Nodes)
+            {
+                ClearNodeSelection(node);
+            }
+        }
+
+        private void ClearNodeSelection(TreeNode node)
+        {
+            node.Checked = false;
+            foreach (TreeNode childNode in node.Nodes)
+            {
+                ClearNodeSelection(childNode);
+            }
+        }
+
+        private void FolderTreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Action != TreeViewAction.Unknown)
+            {
+                if (e.Node.Checked)
+                {
+                    selectedNodes.Add(e.Node);
+                }
+                else
+                {
+                    selectedNodes.Remove(e.Node);
+                }
+            }
+        }
+
+        private void FolderTreeView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                TreeNode node = folderTreeView.GetNodeAt(e.X, e.Y);
+                if (node != null)
+                {
+                    folderTreeView.SelectedNode = node;
+                    string selectedPath = node.FullPath;
+                    if (File.Exists(selectedPath))
+                    {
+                        localFileMenuStrip.Show(folderTreeView, e.Location);
+                    }
+                }
+            }
+        }
+
+    public string GetLocalPath()
+        {
+            return localPathTextBox.Text;
+        }
+    }
 }

@@ -28,259 +28,284 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.inforServerConnectPanel = new System.Windows.Forms.Panel();
-            this.connectButton = new System.Windows.Forms.Button();
-            this.passwdTextBox = new System.Windows.Forms.TextBox();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.hostTextBox = new System.Windows.Forms.TextBox();
-            this.passwdLabel = new System.Windows.Forms.Label();
-            this.portTextBox = new System.Windows.Forms.TextBox();
-            this.usernameLabel = new System.Windows.Forms.Label();
-            this.portLabel = new System.Windows.Forms.Label();
-            this.hostLabel = new System.Windows.Forms.Label();
-            this.mainContainer = new System.Windows.Forms.SplitContainer();
-            this.mainsiteContainer = new System.Windows.Forms.SplitContainer();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inforServerConnectPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
-            this.mainContainer.Panel1.SuspendLayout();
-            this.mainContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainsiteContainer)).BeginInit();
-            this.mainsiteContainer.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            inforServerConnectPanel = new Panel();
+            activeModeRadioButton = new RadioButton();
+            passiveModeRadioButton = new RadioButton();
+            connectButton = new Button();
+            passwdTextBox = new TextBox();
+            usernameTextBox = new TextBox();
+            hostTextBox = new TextBox();
+            passwdLabel = new Label();
+            portTextBox = new TextBox();
+            usernameLabel = new Label();
+            portLabel = new Label();
+            hostLabel = new Label();
+            mainContainer = new SplitContainer();
+            mainsiteContainer = new SplitContainer();
+            menuStrip1 = new MenuStrip();
+            serverToolStripMenuItem = new ToolStripMenuItem();
+            reconnectToolStripMenuItem = new ToolStripMenuItem();
+            disconnectToolStripMenuItem = new ToolStripMenuItem();
+            userToolStripMenuItem = new ToolStripMenuItem();
+            registerToolStripMenuItem = new ToolStripMenuItem();
+            settingsToolStripMenuItem = new ToolStripMenuItem();
+            inforServerConnectPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mainContainer).BeginInit();
+            mainContainer.Panel1.SuspendLayout();
+            mainContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mainsiteContainer).BeginInit();
+            mainsiteContainer.SuspendLayout();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // inforServerConnectPanel
             // 
-            this.inforServerConnectPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inforServerConnectPanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.inforServerConnectPanel.Controls.Add(this.connectButton);
-            this.inforServerConnectPanel.Controls.Add(this.passwdTextBox);
-            this.inforServerConnectPanel.Controls.Add(this.usernameTextBox);
-            this.inforServerConnectPanel.Controls.Add(this.hostTextBox);
-            this.inforServerConnectPanel.Controls.Add(this.passwdLabel);
-            this.inforServerConnectPanel.Controls.Add(this.portTextBox);
-            this.inforServerConnectPanel.Controls.Add(this.usernameLabel);
-            this.inforServerConnectPanel.Controls.Add(this.portLabel);
-            this.inforServerConnectPanel.Controls.Add(this.hostLabel);
-            this.inforServerConnectPanel.Location = new System.Drawing.Point(0, 44);
-            this.inforServerConnectPanel.Name = "inforServerConnectPanel";
-            this.inforServerConnectPanel.Size = new System.Drawing.Size(1527, 61);
-            this.inforServerConnectPanel.TabIndex = 1;
-            this.inforServerConnectPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.inforServerConnectPanel_Paint);
+            inforServerConnectPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            inforServerConnectPanel.BackColor = Color.Gainsboro;
+            inforServerConnectPanel.Controls.Add(activeModeRadioButton);
+            inforServerConnectPanel.Controls.Add(passiveModeRadioButton);
+            inforServerConnectPanel.Controls.Add(connectButton);
+            inforServerConnectPanel.Controls.Add(passwdTextBox);
+            inforServerConnectPanel.Controls.Add(usernameTextBox);
+            inforServerConnectPanel.Controls.Add(hostTextBox);
+            inforServerConnectPanel.Controls.Add(passwdLabel);
+            inforServerConnectPanel.Controls.Add(portTextBox);
+            inforServerConnectPanel.Controls.Add(usernameLabel);
+            inforServerConnectPanel.Controls.Add(portLabel);
+            inforServerConnectPanel.Controls.Add(hostLabel);
+            inforServerConnectPanel.Location = new Point(0, 56);
+            inforServerConnectPanel.Margin = new Padding(3, 4, 3, 4);
+            inforServerConnectPanel.Name = "inforServerConnectPanel";
+            inforServerConnectPanel.Size = new Size(1856, 78);
+            inforServerConnectPanel.TabIndex = 1;
+            inforServerConnectPanel.Paint += inforServerConnectPanel_Paint;
+            // 
+            // activeModeRadioButton
+            // 
+            activeModeRadioButton.AutoSize = true;
+            activeModeRadioButton.Location = new Point(1516, 39);
+            activeModeRadioButton.Name = "activeModeRadioButton";
+            activeModeRadioButton.Size = new Size(180, 36);
+            activeModeRadioButton.TabIndex = 9;
+            activeModeRadioButton.TabStop = true;
+            activeModeRadioButton.Text = "Active Mode";
+            activeModeRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // passiveModeRadioButton
+            // 
+            passiveModeRadioButton.AutoSize = true;
+            passiveModeRadioButton.Location = new Point(1516, 3);
+            passiveModeRadioButton.Name = "passiveModeRadioButton";
+            passiveModeRadioButton.Size = new Size(190, 36);
+            passiveModeRadioButton.TabIndex = 4;
+            passiveModeRadioButton.TabStop = true;
+            passiveModeRadioButton.Text = "Passive Mode";
+            passiveModeRadioButton.UseVisualStyleBackColor = true;
             // 
             // connectButton
             // 
-            this.connectButton.Location = new System.Drawing.Point(1172, 9);
-            this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(170, 41);
-            this.connectButton.TabIndex = 8;
-            this.connectButton.Text = "Connect";
-            this.connectButton.UseVisualStyleBackColor = true;
-            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
+            connectButton.Location = new Point(1270, 12);
+            connectButton.Margin = new Padding(3, 4, 3, 4);
+            connectButton.Name = "connectButton";
+            connectButton.Size = new Size(184, 52);
+            connectButton.TabIndex = 8;
+            connectButton.Text = "Connect";
+            connectButton.UseVisualStyleBackColor = true;
+            connectButton.Click += connectButton_Click;
             // 
             // passwdTextBox
             // 
-            this.passwdTextBox.Location = new System.Drawing.Point(966, 14);
-            this.passwdTextBox.Name = "passwdTextBox";
-            this.passwdTextBox.Size = new System.Drawing.Size(170, 31);
-            this.passwdTextBox.TabIndex = 7;
-            this.passwdTextBox.UseSystemPasswordChar = true;
+            passwdTextBox.Location = new Point(1046, 18);
+            passwdTextBox.Margin = new Padding(3, 4, 3, 4);
+            passwdTextBox.Name = "passwdTextBox";
+            passwdTextBox.Size = new Size(184, 39);
+            passwdTextBox.TabIndex = 7;
+            passwdTextBox.UseSystemPasswordChar = true;
             // 
             // usernameTextBox
             // 
-            this.usernameTextBox.Location = new System.Drawing.Point(658, 9);
-            this.usernameTextBox.Multiline = true;
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(170, 42);
-            this.usernameTextBox.TabIndex = 6;
+            usernameTextBox.Location = new Point(713, 12);
+            usernameTextBox.Margin = new Padding(3, 4, 3, 4);
+            usernameTextBox.Multiline = true;
+            usernameTextBox.Name = "usernameTextBox";
+            usernameTextBox.Size = new Size(184, 53);
+            usernameTextBox.TabIndex = 6;
             // 
             // hostTextBox
             // 
-            this.hostTextBox.Location = new System.Drawing.Point(80, 9);
-            this.hostTextBox.Multiline = true;
-            this.hostTextBox.Name = "hostTextBox";
-            this.hostTextBox.Size = new System.Drawing.Size(170, 42);
-            this.hostTextBox.TabIndex = 4;
+            hostTextBox.Location = new Point(87, 12);
+            hostTextBox.Margin = new Padding(3, 4, 3, 4);
+            hostTextBox.Multiline = true;
+            hostTextBox.Name = "hostTextBox";
+            hostTextBox.Size = new Size(184, 53);
+            hostTextBox.TabIndex = 4;
             // 
             // passwdLabel
             // 
-            this.passwdLabel.AutoSize = true;
-            this.passwdLabel.Location = new System.Drawing.Point(848, 19);
-            this.passwdLabel.Name = "passwdLabel";
-            this.passwdLabel.Size = new System.Drawing.Size(112, 25);
-            this.passwdLabel.TabIndex = 3;
-            this.passwdLabel.Text = "Password:";
+            passwdLabel.AutoSize = true;
+            passwdLabel.Location = new Point(919, 24);
+            passwdLabel.Name = "passwdLabel";
+            passwdLabel.Size = new Size(116, 32);
+            passwdLabel.TabIndex = 3;
+            passwdLabel.Text = "Password:";
             // 
             // portTextBox
             // 
-            this.portTextBox.Location = new System.Drawing.Point(338, 9);
-            this.portTextBox.Multiline = true;
-            this.portTextBox.Name = "portTextBox";
-            this.portTextBox.Size = new System.Drawing.Size(170, 42);
-            this.portTextBox.TabIndex = 5;
+            portTextBox.Location = new Point(366, 12);
+            portTextBox.Margin = new Padding(3, 4, 3, 4);
+            portTextBox.Multiline = true;
+            portTextBox.Name = "portTextBox";
+            portTextBox.Size = new Size(184, 53);
+            portTextBox.TabIndex = 5;
             // 
             // usernameLabel
             // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(532, 19);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(116, 25);
-            this.usernameLabel.TabIndex = 2;
-            this.usernameLabel.Text = "Username:";
+            usernameLabel.AutoSize = true;
+            usernameLabel.Location = new Point(576, 24);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(126, 32);
+            usernameLabel.TabIndex = 2;
+            usernameLabel.Text = "Username:";
             // 
             // portLabel
             // 
-            this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(272, 19);
-            this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(57, 25);
-            this.portLabel.TabIndex = 1;
-            this.portLabel.Text = "Port:";
+            portLabel.AutoSize = true;
+            portLabel.Location = new Point(295, 24);
+            portLabel.Name = "portLabel";
+            portLabel.Size = new Size(61, 32);
+            portLabel.TabIndex = 1;
+            portLabel.Text = "Port:";
             // 
             // hostLabel
             // 
-            this.hostLabel.AutoSize = true;
-            this.hostLabel.Location = new System.Drawing.Point(12, 19);
-            this.hostLabel.Name = "hostLabel";
-            this.hostLabel.Size = new System.Drawing.Size(62, 25);
-            this.hostLabel.TabIndex = 0;
-            this.hostLabel.Text = "Host:";
+            hostLabel.AutoSize = true;
+            hostLabel.Location = new Point(13, 24);
+            hostLabel.Name = "hostLabel";
+            hostLabel.Size = new Size(68, 32);
+            hostLabel.TabIndex = 0;
+            hostLabel.Text = "Host:";
             // 
             // mainContainer
             // 
-            this.mainContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mainContainer.Location = new System.Drawing.Point(12, 111);
-            this.mainContainer.Name = "mainContainer";
-            this.mainContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            mainContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            mainContainer.BorderStyle = BorderStyle.Fixed3D;
+            mainContainer.Location = new Point(13, 142);
+            mainContainer.Margin = new Padding(3, 4, 3, 4);
+            mainContainer.Name = "mainContainer";
+            mainContainer.Orientation = Orientation.Horizontal;
             // 
             // mainContainer.Panel1
             // 
-            this.mainContainer.Panel1.Controls.Add(this.mainsiteContainer);
+            mainContainer.Panel1.Controls.Add(mainsiteContainer);
             // 
             // mainContainer.Panel2
             // 
-            this.mainContainer.Panel2.BackColor = System.Drawing.SystemColors.Info;
-            this.mainContainer.Size = new System.Drawing.Size(1504, 800);
-            this.mainContainer.SplitterDistance = 532;
-            this.mainContainer.SplitterWidth = 2;
-            this.mainContainer.TabIndex = 2;
+            mainContainer.Panel2.BackColor = SystemColors.Info;
+            mainContainer.Size = new Size(1831, 1024);
+            mainContainer.SplitterDistance = 680;
+            mainContainer.SplitterWidth = 3;
+            mainContainer.TabIndex = 2;
             // 
             // mainsiteContainer
             // 
-            this.mainsiteContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mainsiteContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainsiteContainer.Location = new System.Drawing.Point(0, 0);
-            this.mainsiteContainer.Name = "mainsiteContainer";
+            mainsiteContainer.BorderStyle = BorderStyle.Fixed3D;
+            mainsiteContainer.Dock = DockStyle.Fill;
+            mainsiteContainer.Location = new Point(0, 0);
+            mainsiteContainer.Margin = new Padding(3, 4, 3, 4);
+            mainsiteContainer.Name = "mainsiteContainer";
             // 
             // mainsiteContainer.Panel1
             // 
-            this.mainsiteContainer.Panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.mainsiteContainer.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            mainsiteContainer.Panel1.BackColor = SystemColors.AppWorkspace;
+            mainsiteContainer.Panel1.RightToLeft = RightToLeft.No;
             // 
             // mainsiteContainer.Panel2
             // 
-            this.mainsiteContainer.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.mainsiteContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mainsiteContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mainsiteContainer.Size = new System.Drawing.Size(1504, 532);
-            this.mainsiteContainer.SplitterDistance = 499;
-            this.mainsiteContainer.SplitterWidth = 2;
-            this.mainsiteContainer.TabIndex = 0;
+            mainsiteContainer.Panel2.BackColor = SystemColors.ActiveCaption;
+            mainsiteContainer.Panel2.RightToLeft = RightToLeft.No;
+            mainsiteContainer.RightToLeft = RightToLeft.No;
+            mainsiteContainer.Size = new Size(1831, 680);
+            mainsiteContainer.SplitterDistance = 606;
+            mainsiteContainer.SplitterWidth = 2;
+            mainsiteContainer.TabIndex = 0;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.serverToolStripMenuItem,
-            this.userToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1528, 40);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.ImageScalingSize = new Size(32, 32);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { serverToolStripMenuItem, userToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Padding = new Padding(6, 3, 0, 3);
+            menuStrip1.Size = new Size(1857, 42);
+            menuStrip1.TabIndex = 3;
+            menuStrip1.Text = "menuStrip1";
             // 
             // serverToolStripMenuItem
             // 
-            this.serverToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reconnectToolStripMenuItem,
-            this.disconnectToolStripMenuItem});
-            this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(101, 36);
-            this.serverToolStripMenuItem.Text = "Server";
+            serverToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { reconnectToolStripMenuItem, disconnectToolStripMenuItem });
+            serverToolStripMenuItem.Name = "serverToolStripMenuItem";
+            serverToolStripMenuItem.Size = new Size(101, 36);
+            serverToolStripMenuItem.Text = "Server";
             // 
             // reconnectToolStripMenuItem
             // 
-            this.reconnectToolStripMenuItem.Name = "reconnectToolStripMenuItem";
-            this.reconnectToolStripMenuItem.Size = new System.Drawing.Size(265, 44);
-            this.reconnectToolStripMenuItem.Text = "Reconnect";
-            this.reconnectToolStripMenuItem.Click += new System.EventHandler(this.reconnectToolStripMenuItem_Click);
+            reconnectToolStripMenuItem.Name = "reconnectToolStripMenuItem";
+            reconnectToolStripMenuItem.Size = new Size(265, 44);
+            reconnectToolStripMenuItem.Text = "Reconnect";
+            reconnectToolStripMenuItem.Click += reconnectToolStripMenuItem_Click;
             // 
             // disconnectToolStripMenuItem
             // 
-            this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(265, 44);
-            this.disconnectToolStripMenuItem.Text = "Disconnect";
-            this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.disconnectToolStripMenuItem_Click);
+            disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
+            disconnectToolStripMenuItem.Size = new Size(265, 44);
+            disconnectToolStripMenuItem.Text = "Disconnect";
+            disconnectToolStripMenuItem.Click += disconnectToolStripMenuItem_Click;
             // 
             // userToolStripMenuItem
             // 
-            this.userToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registerToolStripMenuItem,
-            this.settingsToolStripMenuItem});
-            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(81, 36);
-            this.userToolStripMenuItem.Text = "User";
+            userToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { registerToolStripMenuItem, settingsToolStripMenuItem });
+            userToolStripMenuItem.Name = "userToolStripMenuItem";
+            userToolStripMenuItem.Size = new Size(81, 36);
+            userToolStripMenuItem.Text = "User";
             // 
             // registerToolStripMenuItem
             // 
-            this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
-            this.registerToolStripMenuItem.Size = new System.Drawing.Size(233, 44);
-            this.registerToolStripMenuItem.Text = "Register";
-            this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
+            registerToolStripMenuItem.Name = "registerToolStripMenuItem";
+            registerToolStripMenuItem.Size = new Size(233, 44);
+            registerToolStripMenuItem.Text = "Register";
+            registerToolStripMenuItem.Click += registerToolStripMenuItem_Click;
             // 
             // settingsToolStripMenuItem
             // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(233, 44);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            settingsToolStripMenuItem.Size = new Size(233, 44);
+            settingsToolStripMenuItem.Text = "Settings";
+            settingsToolStripMenuItem.Click += settingsToolStripMenuItem_Click;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1528, 923);
-            this.Controls.Add(this.mainContainer);
-            this.Controls.Add(this.inforServerConnectPanel);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainForm";
-            this.Text = "FTP Client";
-            this.Load += new System.EventHandler(this.MainForm_Load);
-            this.inforServerConnectPanel.ResumeLayout(false);
-            this.inforServerConnectPanel.PerformLayout();
-            this.mainContainer.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
-            this.mainContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mainsiteContainer)).EndInit();
-            this.mainsiteContainer.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1857, 1181);
+            Controls.Add(mainContainer);
+            Controls.Add(inforServerConnectPanel);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "MainForm";
+            Text = "FTP Client";
+            Load += MainForm_Load;
+            inforServerConnectPanel.ResumeLayout(false);
+            inforServerConnectPanel.PerformLayout();
+            mainContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)mainContainer).EndInit();
+            mainContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)mainsiteContainer).EndInit();
+            mainsiteContainer.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -303,6 +328,8 @@
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private RadioButton activeModeRadioButton;
+        private RadioButton passiveModeRadioButton;
     }
 }
 

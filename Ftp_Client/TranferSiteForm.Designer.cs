@@ -28,37 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Title = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            clientLog = new ListView();
+            SuspendLayout();
             // 
-            // Title
+            // clientLog
             // 
-            this.Title.AutoSize = true;
-            this.Title.Font = new System.Drawing.Font("Modern No. 20", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(165, 197);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(484, 45);
-            this.Title.TabIndex = 0;
-            this.Title.Text = "TRANFER SITE HERE";
+            clientLog.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            clientLog.Location = new Point(0, -4);
+            clientLog.Name = "clientLog";
+            clientLog.Size = new Size(857, 658);
+            clientLog.TabIndex = 0;
+            clientLog.UseCompatibleStateImageBehavior = false;
             // 
             // TranferSiteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Title);
-            this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "TranferSiteForm";
-            this.Text = "TranferSiteForm";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(854, 684);
+            Controls.Add(clientLog);
+            ForeColor = SystemColors.ButtonHighlight;
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "TranferSiteForm";
+            Text = "TranferSiteForm";
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.Label Title;
+        private ListView clientLog;
     }
 }

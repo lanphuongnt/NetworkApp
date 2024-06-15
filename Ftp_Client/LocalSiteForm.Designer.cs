@@ -28,115 +28,137 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainContainer = new System.Windows.Forms.SplitContainer();
-            this.fileBrowser = new System.Windows.Forms.WebBrowser();
-            this.localSiteLabel = new System.Windows.Forms.Label();
-            this.localPathTextBox = new System.Windows.Forms.TextBox();
-            this.backButton = new System.Windows.Forms.Button();
-            this.folderTreeView = new System.Windows.Forms.TreeView();
-            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
-            this.mainContainer.Panel1.SuspendLayout();
-            this.mainContainer.Panel2.SuspendLayout();
-            this.mainContainer.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            mainContainer = new SplitContainer();
+            folderTreeView = new TreeView();
+            fileBrowser = new WebBrowser();
+            localSiteLabel = new Label();
+            localPathTextBox = new TextBox();
+            backButton = new Button();
+            localFileMenuStrip = new ContextMenuStrip(components);
+            uploadFileToolStripMenuItem = new ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)mainContainer).BeginInit();
+            mainContainer.Panel1.SuspendLayout();
+            mainContainer.Panel2.SuspendLayout();
+            mainContainer.SuspendLayout();
+            localFileMenuStrip.SuspendLayout();
+            SuspendLayout();
             // 
             // mainContainer
             // 
-            this.mainContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mainContainer.Location = new System.Drawing.Point(0, 66);
-            this.mainContainer.Name = "mainContainer";
-            this.mainContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            mainContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            mainContainer.BorderStyle = BorderStyle.FixedSingle;
+            mainContainer.Location = new Point(0, 53);
+            mainContainer.Margin = new Padding(2);
+            mainContainer.Name = "mainContainer";
+            mainContainer.Orientation = Orientation.Horizontal;
             // 
             // mainContainer.Panel1
             // 
-            this.mainContainer.Panel1.Controls.Add(this.folderTreeView);
+            mainContainer.Panel1.Controls.Add(folderTreeView);
             // 
             // mainContainer.Panel2
             // 
-            this.mainContainer.Panel2.Controls.Add(this.fileBrowser);
-            this.mainContainer.Size = new System.Drawing.Size(828, 650);
-            this.mainContainer.SplitterDistance = 253;
-            this.mainContainer.SplitterWidth = 1;
-            this.mainContainer.TabIndex = 1;
-            // 
-            // fileBrowser
-            // 
-            this.fileBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileBrowser.Location = new System.Drawing.Point(0, 0);
-            this.fileBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.fileBrowser.Name = "fileBrowser";
-            this.fileBrowser.Size = new System.Drawing.Size(826, 394);
-            this.fileBrowser.TabIndex = 0;
-            this.fileBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.fileBrowser_DocumentCompleted);
-            // 
-            // localSiteLabel
-            // 
-            this.localSiteLabel.AutoSize = true;
-            this.localSiteLabel.Location = new System.Drawing.Point(12, 21);
-            this.localSiteLabel.Name = "localSiteLabel";
-            this.localSiteLabel.Size = new System.Drawing.Size(110, 25);
-            this.localSiteLabel.TabIndex = 2;
-            this.localSiteLabel.Text = "Local site:";
-            // 
-            // localPathTextBox
-            // 
-            this.localPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.localPathTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.localPathTextBox.Location = new System.Drawing.Point(128, 15);
-            this.localPathTextBox.Name = "localPathTextBox";
-            this.localPathTextBox.Size = new System.Drawing.Size(524, 31);
-            this.localPathTextBox.TabIndex = 3;
-            this.localPathTextBox.TextChanged += new System.EventHandler(this.localPathTextBox_TextChanged);
-            this.localPathTextBox.Leave += new System.EventHandler(this.localPathTextBox_Leave);
-            this.localPathTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.localPathTextBox_PreviewKeyDown);
-            // 
-            // backButton
-            // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.Location = new System.Drawing.Point(669, 5);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(147, 57);
-            this.backButton.TabIndex = 4;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            mainContainer.Panel2.Controls.Add(fileBrowser);
+            mainContainer.Size = new Size(552, 520);
+            mainContainer.SplitterDistance = 202;
+            mainContainer.SplitterWidth = 1;
+            mainContainer.TabIndex = 1;
             // 
             // folderTreeView
             // 
-            this.folderTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.folderTreeView.Location = new System.Drawing.Point(3, 3);
-            this.folderTreeView.Name = "folderTreeView";
-            this.folderTreeView.Size = new System.Drawing.Size(824, 245);
-            this.folderTreeView.TabIndex = 0;
-            this.folderTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.folderTreeView_NodeMouseDoubleClick);
+            folderTreeView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            folderTreeView.Location = new Point(2, 2);
+            folderTreeView.Margin = new Padding(2);
+            folderTreeView.Name = "folderTreeView";
+            folderTreeView.Size = new Size(550, 196);
+            folderTreeView.TabIndex = 0;
+            folderTreeView.NodeMouseDoubleClick += folderTreeView_NodeMouseDoubleClick;
+            folderTreeView.MouseUp += FolderTreeView_MouseUp;
+            //folderTreeView.NodeMouseClick += FolderTreeView_NodeMouseClick;
+            // 
+            // fileBrowser
+            // 
+            fileBrowser.Dock = DockStyle.Fill;
+            fileBrowser.Location = new Point(0, 0);
+            fileBrowser.Margin = new Padding(2);
+            fileBrowser.MinimumSize = new Size(13, 16);
+            fileBrowser.Name = "fileBrowser";
+            fileBrowser.Size = new Size(550, 315);
+            fileBrowser.TabIndex = 0;
+            fileBrowser.DocumentCompleted += fileBrowser_DocumentCompleted;
+            // 
+            // localSiteLabel
+            // 
+            localSiteLabel.AutoSize = true;
+            localSiteLabel.Location = new Point(8, 17);
+            localSiteLabel.Margin = new Padding(2, 0, 2, 0);
+            localSiteLabel.Name = "localSiteLabel";
+            localSiteLabel.Size = new Size(74, 20);
+            localSiteLabel.TabIndex = 2;
+            localSiteLabel.Text = "Local site:";
+            // 
+            // localPathTextBox
+            // 
+            localPathTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            localPathTextBox.BorderStyle = BorderStyle.FixedSingle;
+            localPathTextBox.Location = new Point(85, 12);
+            localPathTextBox.Margin = new Padding(2);
+            localPathTextBox.Name = "localPathTextBox";
+            localPathTextBox.Size = new Size(350, 27);
+            localPathTextBox.TabIndex = 3;
+            localPathTextBox.TextChanged += localPathTextBox_TextChanged;
+            localPathTextBox.Leave += localPathTextBox_Leave;
+            localPathTextBox.PreviewKeyDown += localPathTextBox_PreviewKeyDown;
+            // 
+            // backButton
+            // 
+            backButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            backButton.Location = new Point(446, 4);
+            backButton.Margin = new Padding(2);
+            backButton.Name = "backButton";
+            backButton.Size = new Size(98, 46);
+            backButton.TabIndex = 4;
+            backButton.Text = "Back";
+            backButton.UseVisualStyleBackColor = true;
+            backButton.Click += backButton_Click;
+            // 
+            // localFileMenuStrip
+            // 
+            localFileMenuStrip.ImageScalingSize = new Size(20, 20);
+            localFileMenuStrip.Items.AddRange(new ToolStripItem[] { uploadFileToolStripMenuItem });
+            localFileMenuStrip.Name = "localFileMenuStrip";
+            localFileMenuStrip.Size = new Size(211, 56);
+            // 
+            // uploadFileToolStripMenuItem
+            // 
+            uploadFileToolStripMenuItem.Name = "uploadFileToolStripMenuItem";
+            uploadFileToolStripMenuItem.Size = new Size(210, 24);
+            uploadFileToolStripMenuItem.Text = "Upload file";
+            uploadFileToolStripMenuItem.Click += UploadMenuItem_Click;
             // 
             // LocalSiteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(828, 720);
-            this.Controls.Add(this.backButton);
-            this.Controls.Add(this.localPathTextBox);
-            this.Controls.Add(this.localSiteLabel);
-            this.Controls.Add(this.mainContainer);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "LocalSiteForm";
-            this.Text = "LocalSiteForm";
-            this.Load += new System.EventHandler(this.LocalSiteForm_Load);
-            this.mainContainer.Panel1.ResumeLayout(false);
-            this.mainContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
-            this.mainContainer.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(552, 576);
+            Controls.Add(backButton);
+            Controls.Add(localPathTextBox);
+            Controls.Add(localSiteLabel);
+            Controls.Add(mainContainer);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2);
+            Name = "LocalSiteForm";
+            Text = "LocalSiteForm";
+            Load += LocalSiteForm_Load;
+            mainContainer.Panel1.ResumeLayout(false);
+            mainContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)mainContainer).EndInit();
+            mainContainer.ResumeLayout(false);
+            localFileMenuStrip.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -147,5 +169,7 @@
         private System.Windows.Forms.WebBrowser fileBrowser;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.TreeView folderTreeView;
+        private ContextMenuStrip localFileMenuStrip;
+        private ToolStripMenuItem uploadFileToolStripMenuItem;
     }
 }
