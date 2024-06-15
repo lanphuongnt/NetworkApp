@@ -176,6 +176,24 @@
             newFolderToolStripMenuItem.Text = "New folder";
             newFolderToolStripMenuItem.Click += newFolderToolStripMenuItem_Click;
             // 
+            // fileListView
+            // 
+            fileListView.Dock = DockStyle.Fill;
+            fileListView.Location = new Point(0, 0);
+            fileListView.Name = "fileListView";
+            fileListView.Size = new Size(552, 297);
+            fileListView.TabIndex = 0;
+            fileListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(folderTreeRemote);
+            panel1.Location = new Point(-1, 57);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(552, 236);
+            panel1.TabIndex = 11;
+            // 
             // RemoteSiteForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);

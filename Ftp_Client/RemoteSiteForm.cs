@@ -21,6 +21,14 @@ namespace Ftp_Client
 {
     public partial class RemoteSiteForm : Form
     {
+        public class FileDetail
+        {
+            public string Name { get; set; }
+            public string Size { get; set; }
+            public string Type { get; set; }
+            public string LastModified { get; set; }
+        }
+
         public RemoteSiteForm()
         {
             InitializeComponent();
