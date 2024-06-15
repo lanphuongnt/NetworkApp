@@ -16,6 +16,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using BCrypt.Net;
 using System.IO;
 using SharpCompress.Compressors.Xz;
+using System.Net.NetworkInformation;
 
 namespace Ftp_Server
 {
@@ -42,17 +43,21 @@ namespace Ftp_Server
 
         public static string GetLocalIPv4()
         {
-
-            // Lấy tất cả địa chỉ IP của máy
-            IPAddress[] add = Dns.GetHostAddresses(Dns.GetHostName());
-            if (add.Length > 2)
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
             {
-                return add[1].ToString();
+                if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 &&
+                    ni.OperationalStatus == OperationalStatus.Up)
+                {
+                    foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            return ip.Address.ToString();
+                        }
+                    }
+                }
             }
-            else
-            {
-                return "127.0.0.1";
-            }
+            return "127.0.0.1";
         }
 
         // Handle viewLog

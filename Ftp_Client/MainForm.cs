@@ -17,6 +17,7 @@ using System.Net;
 using System.Reflection.Emit;
 using Amazon.Runtime.Internal.Transform;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Net.NetworkInformation;
 
 namespace Ftp_Client
 {
@@ -104,17 +105,21 @@ namespace Ftp_Client
         /// TAO TCP Client cho Data connection -> PASSIVE / PASV
         public static string GetLocalIPv4()
         {
-           
-                // Lấy tất cả địa chỉ IP của máy
-            IPAddress[] add = Dns.GetHostAddresses(Dns.GetHostName());
-            if (add.Length > 2)
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
             {
-                return add[1].ToString();
+                if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 &&
+                    ni.OperationalStatus == OperationalStatus.Up)
+                {
+                    foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            return ip.Address.ToString();
+                        }
+                    }
+                }
             }
-            else
-            {
-                return "127.0.0.1";
-            }
+            return "127.0.0.1";
         }
 
         // SET PASSIVE OR ACTIVE MODE
